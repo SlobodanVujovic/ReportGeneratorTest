@@ -1,9 +1,6 @@
 package reportGenerator;
 
 import static org.junit.Assert.*;
-
-import java.util.Arrays;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -413,4 +410,145 @@ public class inputFilesTest {
 		assertArrayEquals(expectedAlarm7, actualAlarm7);
 	}
 
+	@Test
+	public void testReadUpForSiteChanged4gOver3g() {
+		AffectedSite gsm9Affectedsite = distribute4gOver3g.readUpForSiteChanged("",
+				distribute4gOver3g.getSiteCode4gStr());
+		AffectedSite umtsAffectedsite = distribute4gOver3g.readUpForSiteChanged("U",
+				distribute4gOver3g.getSiteCode4gStr());
+		AffectedSite lteAffectedsite = distribute4gOver3g.readUpForSiteChanged("L",
+				distribute4gOver3g.getSiteCode4gStr());
+
+		assertEquals(30, gsm9Affectedsite.getAzimuthS1());
+		assertEquals(120, gsm9Affectedsite.getAzimuthS2());
+		assertEquals(220, gsm9Affectedsite.getAzimuthS3());
+		assertEquals(0, gsm9Affectedsite.getAzimuthS4());
+		assertEquals(2, gsm9Affectedsite.getElectricalTiltS1());
+		assertEquals(2, gsm9Affectedsite.getElectricalTiltS2());
+		assertEquals(2, gsm9Affectedsite.getElectricalTiltS3());
+		assertEquals(0, gsm9Affectedsite.getElectricalTiltS4());
+		assertEquals(0, gsm9Affectedsite.getMechanicalTiltS1());
+		assertEquals(-4, gsm9Affectedsite.getMechanicalTiltS2());
+		assertEquals(0, gsm9Affectedsite.getMechanicalTiltS3());
+		assertEquals(0, gsm9Affectedsite.getMechanicalTiltS4());
+		assertEquals(18.3, gsm9Affectedsite.getAntHighS1(), 0.01);
+		assertEquals(18.3, gsm9Affectedsite.getAntHighS2(), 0.01);
+		assertEquals(18.3, gsm9Affectedsite.getAntHighS3(), 0.01);
+		assertEquals(0, gsm9Affectedsite.getAntHighS4(), 0.01);
+		assertEquals(80010892, gsm9Affectedsite.getAntenaTypeS1());
+		assertEquals(80010892, gsm9Affectedsite.getAntenaTypeS2());
+		assertEquals(80010892, gsm9Affectedsite.getAntenaTypeS3());
+		assertEquals(0, gsm9Affectedsite.getAntenaTypeS4());
+		assertEquals(3, gsm9Affectedsite.getNumOfSectors());
+
+		assertEquals(30, umtsAffectedsite.getAzimuthS1());
+		assertEquals(120, umtsAffectedsite.getAzimuthS2());
+		assertEquals(220, umtsAffectedsite.getAzimuthS3());
+		assertEquals(0, umtsAffectedsite.getAzimuthS4());
+		assertEquals(2, umtsAffectedsite.getElectricalTiltS1());
+		assertEquals(3, umtsAffectedsite.getElectricalTiltS2());
+		assertEquals(4, umtsAffectedsite.getElectricalTiltS3());
+		assertEquals(0, umtsAffectedsite.getElectricalTiltS4());
+		assertEquals(0, umtsAffectedsite.getMechanicalTiltS1());
+		assertEquals(-4, umtsAffectedsite.getMechanicalTiltS2());
+		assertEquals(0, umtsAffectedsite.getMechanicalTiltS3());
+		assertEquals(0, umtsAffectedsite.getMechanicalTiltS4());
+		assertEquals(18.3, umtsAffectedsite.getAntHighS1(), 0.01);
+		assertEquals(18.3, umtsAffectedsite.getAntHighS2(), 0.01);
+		assertEquals(18.3, umtsAffectedsite.getAntHighS3(), 0.01);
+		assertEquals(0, umtsAffectedsite.getAntHighS4(), 0.01);
+		assertEquals(80010892, umtsAffectedsite.getAntenaTypeS1());
+		assertEquals(80010892, umtsAffectedsite.getAntenaTypeS2());
+		assertEquals(80010892, umtsAffectedsite.getAntenaTypeS3());
+		assertEquals(0, umtsAffectedsite.getAntenaTypeS4());
+		assertEquals(3, umtsAffectedsite.getNumOfSectors());
+
+		assertEquals(30, lteAffectedsite.getAzimuthS1());
+		assertEquals(120, lteAffectedsite.getAzimuthS2());
+		assertEquals(220, lteAffectedsite.getAzimuthS3());
+		assertEquals(0, lteAffectedsite.getAzimuthS4());
+		assertEquals(2, lteAffectedsite.getElectricalTiltS1());
+		assertEquals(2, lteAffectedsite.getElectricalTiltS2());
+		assertEquals(2, lteAffectedsite.getElectricalTiltS3());
+		assertEquals(0, lteAffectedsite.getElectricalTiltS4());
+		assertEquals(0, lteAffectedsite.getMechanicalTiltS1());
+		assertEquals(-4, lteAffectedsite.getMechanicalTiltS2());
+		assertEquals(0, lteAffectedsite.getMechanicalTiltS3());
+		assertEquals(0, lteAffectedsite.getMechanicalTiltS4());
+		assertEquals(18.3, lteAffectedsite.getAntHighS1(), 0.01);
+		assertEquals(18.3, lteAffectedsite.getAntHighS2(), 0.01);
+		assertEquals(18.3, lteAffectedsite.getAntHighS3(), 0.01);
+		assertEquals(0, lteAffectedsite.getAntHighS4(), 0.01);
+		assertEquals(80010892, lteAffectedsite.getAntenaTypeS1());
+		assertEquals(80010892, lteAffectedsite.getAntenaTypeS2());
+		assertEquals(80010892, lteAffectedsite.getAntenaTypeS3());
+		assertEquals(0, lteAffectedsite.getAntenaTypeS4());
+		assertEquals(3, lteAffectedsite.getNumOfSectors());
+	}
+
+	@Test
+	public void testReadUpForSiteChangedAnntenaTypeAsString() {
+		AffectedSite gsm18Affectedsite = distribute4gOver3g.readUpForSiteChanged("H", "CAL05");
+		AffectedSite lteAffectedsite = distribute4gOver3g.readUpForSiteChanged("L", "CAL05");
+
+		assertEquals(145, gsm18Affectedsite.getAzimuthS1());
+		assertEquals(220, gsm18Affectedsite.getAzimuthS2());
+		assertEquals(330, gsm18Affectedsite.getAzimuthS3());
+		assertEquals(0, gsm18Affectedsite.getAzimuthS4());
+		assertEquals(5, gsm18Affectedsite.getElectricalTiltS1());
+		assertEquals(5, gsm18Affectedsite.getElectricalTiltS2());
+		assertEquals(5, gsm18Affectedsite.getElectricalTiltS3());
+		assertEquals(0, gsm18Affectedsite.getElectricalTiltS4());
+		assertEquals(-2, gsm18Affectedsite.getMechanicalTiltS1());
+		assertEquals(0, gsm18Affectedsite.getMechanicalTiltS2());
+		assertEquals(0, gsm18Affectedsite.getMechanicalTiltS3());
+		assertEquals(0, gsm18Affectedsite.getMechanicalTiltS4());
+		assertEquals(30, gsm18Affectedsite.getAntHighS1(), 0.01);
+		assertEquals(30, gsm18Affectedsite.getAntHighS2(), 0.01);
+		assertEquals(30, gsm18Affectedsite.getAntHighS3(), 0.01);
+		assertEquals(0, gsm18Affectedsite.getAntHighS4(), 0.01);
+		assertEquals("APX186516-T5", gsm18Affectedsite.getAntenaTypeS1Str());
+		assertEquals("APX186516-T5", gsm18Affectedsite.getAntenaTypeS2Str());
+		assertEquals("APX186516-T5", gsm18Affectedsite.getAntenaTypeS3Str());
+		assertEquals("", gsm18Affectedsite.getAntenaTypeS4Str());
+		assertEquals(3, gsm18Affectedsite.getNumOfSectors());
+
+		assertEquals(145, lteAffectedsite.getAzimuthS1());
+		assertEquals(220, lteAffectedsite.getAzimuthS2());
+		assertEquals(330, lteAffectedsite.getAzimuthS3());
+		assertEquals(0, lteAffectedsite.getAzimuthS4());
+		assertEquals(5, lteAffectedsite.getElectricalTiltS1());
+		assertEquals(5, lteAffectedsite.getElectricalTiltS2());
+		assertEquals(5, lteAffectedsite.getElectricalTiltS3());
+		assertEquals(0, lteAffectedsite.getElectricalTiltS4());
+		assertEquals(0, lteAffectedsite.getMechanicalTiltS1());
+		assertEquals(10, lteAffectedsite.getMechanicalTiltS2());
+		assertEquals(5, lteAffectedsite.getMechanicalTiltS3());
+		assertEquals(0, lteAffectedsite.getMechanicalTiltS4());
+		assertEquals(30, lteAffectedsite.getAntHighS1(), 0.01);
+		assertEquals(30, lteAffectedsite.getAntHighS2(), 0.01);
+		assertEquals(30, lteAffectedsite.getAntHighS3(), 0.01);
+		assertEquals(0, lteAffectedsite.getAntHighS4(), 0.01);
+		assertEquals(80010504, lteAffectedsite.getAntenaTypeS1());
+		assertEquals(80010504, lteAffectedsite.getAntenaTypeS2());
+		assertEquals(80010504, lteAffectedsite.getAntenaTypeS3());
+		assertEquals(0, lteAffectedsite.getAntenaTypeS4());
+		assertEquals(3, lteAffectedsite.getNumOfSectors());
+	}
+
+	@Test
+	public void testSetCrOfTransmissionForLteOver3g() {
+		distribute4gOver3g.setCrOfTransmissionForLteOver3g("BGU100");
+
+		String expected = "C:\\RG input test\\4gDistributeOver3gFull\\CommissioningReport_BGU100_20151201.txt";
+		assertEquals(expected, distribute4gOver3g.getCrOfTransmissionForLte().toString());
+	}
+
+	@Test
+	public void testSetCrOfTransmissionForLteOver2g() {
+		distribute4gOver2g.setCrOfTransmissionForLteOver2g();
+
+		String expected = "C:\\RG input test\\4gDistributeOver2gFull\\BCFID1090_04Nov2015_1705_SCF.xml";
+		assertEquals(expected, distribute4gOver2g.getCrOfTransmissionForLte().toString());
+	}
 }
